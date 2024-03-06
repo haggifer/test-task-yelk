@@ -1,58 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { ReactElement, useEffect, useMemo } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { StyledEngineProvider, Theme } from '@mui/material/styles';
+import { getTheme } from 'utils/configs/themeConfig';
+import './assets/scss/index.scss';
+import { Outlet } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { defaultPublicPath } from './routing/router';
+import classes from 'App.module.scss';
+import { PageContainer } from './components/layout/PageContainer/PageContainer';
 
-function App() {
+export default function App(): ReactElement {
+  const theme = useMemo<Theme>(() => getTheme(), []);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate(defaultPublicPath);
+    }
+  }, [location.pathname]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline enableColorScheme />
+
+      <StyledEngineProvider injectFirst>
+        <>
+          <main className={classes.content_wrapper}>
+            <PageContainer>
+              <Outlet />
+            </PageContainer>
+          </main>
+        </>
+      </StyledEngineProvider>
+    </ThemeProvider>
   );
 }
-
-export default App;
