@@ -1,5 +1,5 @@
 export interface IAirport {
-  id: number,
+  id: number;
   icao: string;
   iata: string;
   localCode: string;
@@ -26,11 +26,11 @@ export interface IAirport {
     googleMaps: string;
     flightRadar: string;
   };
-  image: string,
+  image: string;
 }
 
 export interface IRouteAirport {
-  id: number,
+  id: number;
   time: string;
   code: string;
   timeZone: string;

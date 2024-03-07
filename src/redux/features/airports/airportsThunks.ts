@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IAirport, IRoute } from '../../../typescript/entities';
 import { apiProvider } from '../../../api/api';
-import { IAirportListParams, IRouteListParams } from "../../../typescript/requests";
-import { setActiveAirport } from "./airportsSlice";
+import {
+  IAirportListParams,
+  IRouteListParams,
+} from '../../../typescript/requests';
 
 export const defaultAirportsDataLength = 10;
 
@@ -32,7 +34,7 @@ export const getAirportList = createAsyncThunk<IAirport[], IAirportListParams>(
 
 export const getAirportRouteList = createAsyncThunk<IRoute[], IRouteListParams>(
   'airports/getRouteList',
-  async ({ _limit, airport_id }, { signal, rejectWithValue, dispatch }) => {
+  async ({ _limit, airport_id }, { signal, rejectWithValue }) => {
     try {
       const response = await apiProvider.request<IRoute[]>({
         method: 'get',

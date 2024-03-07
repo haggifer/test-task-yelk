@@ -1,10 +1,12 @@
 import React, { ReactElement, useEffect, useMemo } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { StyledEngineProvider, Theme } from '@mui/material/styles';
-import { getTheme } from "./utils/configs/themeConfig";
-import { WithChildren } from "./typescript/common";
+import { getTheme } from './utils/configs/themeConfig';
+import { WithChildren } from './typescript/common';
 
-export default function CustomThemeProvider({ children }: WithChildren<unknown>): ReactElement {
+export default function CustomThemeProvider({
+  children,
+}: WithChildren<unknown>): ReactElement {
   const theme = useMemo<Theme>(() => getTheme(), []);
 
   useEffect(() => {
@@ -15,11 +17,9 @@ export default function CustomThemeProvider({ children }: WithChildren<unknown>)
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline enableColorScheme/>
+      <CssBaseline enableColorScheme />
 
-      <StyledEngineProvider injectFirst>
-        {children}
-      </StyledEngineProvider>
+      <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
     </ThemeProvider>
   );
 }

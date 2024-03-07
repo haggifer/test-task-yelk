@@ -11,9 +11,10 @@ export interface ISerializableError {
 }
 
 export const apiProvider = axios.create({
-  baseURL: process.env.NODE_ENV === 'production'
-    ? process.env.REACT_APP_API_ENDPOINT_PROD
-    : process.env.REACT_APP_API_ENDPOINT_LOCAL,
+  baseURL:
+    process.env.NODE_ENV === 'production'
+      ? process.env.REACT_APP_API_ENDPOINT_PROD
+      : process.env.REACT_APP_API_ENDPOINT_LOCAL,
   headers: {
     'Content-Type': 'application/json',
   },

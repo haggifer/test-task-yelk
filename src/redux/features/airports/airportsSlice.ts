@@ -14,11 +14,14 @@ export const airportsSlice = createSlice({
   name: 'airports',
   initialState,
   reducers: {
-    setActiveAirport: (state, action: PayloadAction<IAirportState['activeAirport']>) => {
-      state.activeAirport = action.payload
+    setActiveAirport: (
+      state,
+      action: PayloadAction<IAirportState['activeAirport']>,
+    ) => {
+      state.activeAirport = action.payload;
     },
     clearRoutes: (state) => {
-      state.routes = null
+      state.routes = null;
     },
   },
   extraReducers: (builder) => {
@@ -47,7 +50,7 @@ export const airportsSlice = createSlice({
       })
       .addCase(getAirportRouteList.rejected, (state) => {
         state.loading--;
-      })
+      });
   },
 });
 

@@ -16,17 +16,22 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
     const searchValue = req.query.search as string | undefined;
 
-    const searchFilter = searchValue && searchValue.trim() !== '' ? {
-      $or: [
-        { fullName: { $regex: searchValue, $options: 'i' } },
-        { shortName: { $regex: searchValue, $options: 'i' } },
-        { icao: { $regex: searchValue, $options: 'i' } },
-        { iata: { $regex: searchValue, $options: 'i' } },
-        { municipalityName: { $regex: searchValue, $options: 'i' } },
-      ],
-    } : {};
+    const searchFilter =
+      searchValue && searchValue.trim() !== ''
+        ? {
+            $or: [
+              { fullName: { $regex: searchValue, $options: 'i' } },
+              { shortName: { $regex: searchValue, $options: 'i' } },
+              { icao: { $regex: searchValue, $options: 'i' } },
+              { iata: { $regex: searchValue, $options: 'i' } },
+              { municipalityName: { $regex: searchValue, $options: 'i' } },
+            ],
+          }
+        : {};
 
-    const limit = req.query._limit ? parseInt(req.query._limit as string, 10) : 0;
+    const limit = req.query._limit
+      ? parseInt(req.query._limit as string, 10)
+      : 0;
 
     const filteredAirports = airports.find(searchFilter).limit(limit);
 
