@@ -88,9 +88,9 @@ export default function Airports(): ReactElement {
         disabled={!!airports.loading}
       />
 
-      {!airports.data && airports.loading ? (
+      {!airports.data ? (
         <CustomProgress type="page" />
-      ) : !airports.data ? (
+      ) : !airports.data.length ? (
         <Typography variant="h6">Nothing found</Typography>
       ) : (
         <Box className={classes.cards}>
