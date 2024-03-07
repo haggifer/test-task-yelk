@@ -1,1 +1,1 @@
-export const maxContentWidth = 1200;
+export const maxContentWidth = 1400;

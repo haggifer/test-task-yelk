@@ -1,4 +1,5 @@
 export interface IAirport {
+  id: number,
   icao: string;
   iata: string;
   localCode: string;
@@ -25,4 +26,41 @@ export interface IAirport {
     googleMaps: string;
     flightRadar: string;
   };
+  image: string,
+}
+
+export interface IRouteAirport {
+  id: number,
+  time: string;
+  code: string;
+  timeZone: string;
+  type: string;
+  label: string;
+  country: {
+    label: string;
+    code: string;
+    city: string;
+  };
+}
+
+export interface IRouteDuration {
+  text: string;
+  value: number;
+}
+
+export interface IRouteTotals {
+  currency: string;
+  total: number;
+}
+
+export interface IRoute {
+  id: number;
+  flightCode: string;
+  flightName: string;
+  stops: number;
+  cabinType: string;
+  departureAirport: IRouteAirport;
+  arrivalAirport: IRouteAirport;
+  duration: IRouteDuration;
+  totals: IRouteTotals;
 }

@@ -4,13 +4,13 @@ import React from 'react';
 import NotFound from '../pages/service/NotFound/NotFound';
 import App from '../App';
 
-export const defaultPublicPath = '/todos';
+export const defaultPublicPath = '/airports';
 
 export const publicRoutes: RouteObject[] = [
-  {
-    path: '/',
-    element: <Airports />,
-  },
+  // {
+  //   path: '/',
+  //   element: <Airports />,
+  // },
   {
     path: '/airports',
     element: <Airports />,
